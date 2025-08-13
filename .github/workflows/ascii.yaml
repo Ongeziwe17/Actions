@@ -1,0 +1,22 @@
+name: Generate ASCII FILE
+
+on: push
+
+jobs:
+  ascii_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install 3rd Party Cowsay
+        run: sudo apt-get install cowsay -y
+
+      - name: Generate ASCII Artwork
+        run: cowsay -f dragon "Run for cover,... I am a dragon. Roooooaaaaar🔥" >> dragon.txt
+
+      - name: Confirm if file exist
+        run: grep -i "dragon" dragon.txt
+
+      - name: List Repo Files
+        run: ls -ltra
